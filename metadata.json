@@ -1,0 +1,11 @@
+{
+  "id": "wolfthe-theme-idk",
+  "title": "Better YTMusic",
+  "description": "A theme that adds more dynamic animations and UI modification for the best experiance ever!",
+  "creators": ["WolftheE"],
+  "minVersion": "2.0.4.1",
+  "hasShaders": false,
+  "version": "1.0.0",
+  "tags": ["dark", "animations", "dynamic"],
+  "images": ["1.png", "2.png"]
+}
