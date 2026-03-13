@@ -21,5 +21,11 @@ When you load the theme, the first change you will see is the buttons and when y
 - Fixed context menu spacing and theming
 - And more to come soon!
 
+<div display="flex">
+  <img src="images/1.png">
+  <img src="images/2.png">
+  <img src="images/3.png">
+</div>
+
 ## Install
 Download or copy the style.css theme and load it!
