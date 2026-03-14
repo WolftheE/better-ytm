@@ -12,3 +12,4 @@ A theme that adds a more dynamic animations and UI modification for the best exp
 
 ## Installation Notes
 This theme works best with the album art background enabled.
+If using a laptop, disable Show stylized animations to save power.
