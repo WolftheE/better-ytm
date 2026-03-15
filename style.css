@@ -47,7 +47,7 @@
 
 
 
-
+/* background tuff */
   ytmusic-player-page:before {
     background-size: unset;
     transform: translate3d(0, 0, 0); /*Attemp to force gpu usage for blur */
@@ -67,7 +67,7 @@
     background-repeat: no-repeat;
     background-size: unset;
     transform: translate3d(0, 0, 0); /*Attemp to force gpu usage for blur */
-    filter: brightness(25%) blur(20px);
+    filter: brightness(15%) blur(20px) saturate(200%);
     scale: 3;
   }
 
@@ -76,7 +76,7 @@
     background: rgba(0,0,0,0.3); 
   }
   
-ytmusic-app-layout[is-bauhaus-sidenav-enabled] #mini-guide-background.ytmusic-app-layout, .image.ytmusic-immersive-header-renderer~.content-container-wrapper.ytmusic-immersive-header-renderer .gradient-container.ytmusic-immersive-header-renderer, ytmusic-immersive-header-renderer, .image.ytmusic-immersive-header-renderer~.content-container-wrapper.ytmusic-immersive-header-renderer   {
+  ytmusic-app-layout[is-bauhaus-sidenav-enabled] #mini-guide-background.ytmusic-app-layout, .image.ytmusic-immersive-header-renderer~.content-container-wrapper.ytmusic-immersive-header-renderer .gradient-container.ytmusic-immersive-header-renderer, ytmusic-immersive-header-renderer, .image.ytmusic-immersive-header-renderer~.content-container-wrapper.ytmusic-immersive-header-renderer   {
     background: none;
     border-right: none;
   }
@@ -84,10 +84,11 @@ ytmusic-app-layout[is-bauhaus-sidenav-enabled] #mini-guide-background.ytmusic-ap
   ytmusic-visual-header-renderer[has-banner-image] .gradient-container.ytmusic-visual-header-renderer {
     background: none;
     background-color: none;
-}
-ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-immersive-header-renderer {
+  }
+
+  ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-immersive-header-renderer {
     margin-left: 0;
-}
+  }
 
 
   /* background and stuff*/
@@ -98,6 +99,7 @@ ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-imm
 
   .immersive-background.ytmusic-browse-response ytmusic-fullbleed-thumbnail-renderer.ytmusic-browse-response, ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-immersive-header-renderer {
       mask-image: linear-gradient(to bottom, #000, transparent) !important;
+      height: 75vh;
   }
 
 
@@ -168,7 +170,7 @@ ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-imm
     }
     &:active {
       scale: 0.95;
-  }
+    }
   }
 
 
@@ -182,7 +184,6 @@ ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-imm
   }
 
 
-  }
 
   ytmusic-player-bar[is-web-delhi-icons-enabled] yt-icon-button.ytmusic-player-bar, yt-icon-button {
     border-radius: 15%;
