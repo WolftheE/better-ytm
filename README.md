@@ -11,21 +11,26 @@ When you load the theme, the first change you will see is the buttons and when y
 > [!IMPORTANT]
 > While this theme should work without it, this theme is made to work with [Better Lyrics](https://chromewebstore.google.com/detail/better-lyrics-lyrics-for/effdbpeggelllpfkjppbokhmmiinhlmg?hl=en)
 
+
 ## What this themes Adds/Changes
-- Buttons
-- Searchbar
-- Background of Navbar and player bar
-- Adds more shadows to some elements
-- Animations
-- Transparent menus
-- Fixed context menu spacing and theming
-- And more to come soon!
+- Better Scaling
+- Background Blur effects
+- Button redesigns
+- Small UI fixes/changes
+- More UI consistency
+- Glow and shadows effects
+- More coming soon
+
+## Installation Notes
+This theme works best with the album art background enabled.
+If using a laptop, disable Show stylized animations to save power.
 
 <div display="flex">
-  <img src="images/1.png">
   <img src="images/2.png">
   <img src="images/3.png">
+  <img src="images/4.png">
 </div>
 
 ## Install
 Download or copy the style.css theme and load it!
+Or get it on the [theme market](chrome-extension://effdbpeggelllpfkjppbokhmmiinhlmg/pages/marketplace.html)
