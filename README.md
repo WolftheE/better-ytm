@@ -2,6 +2,13 @@
   <h1>Better YTM</h1>
   <img src="cover.png">
 </div>
+<div align="center">
+
+[![Installs](https://img.shields.io/endpoint?url=https://better-lyrics-themes-api.boidu.dev/api/badge/wolfthee-theme-bytm)](https://github.com/WolftheE/better-ytm)
+[![Rating](https://img.shields.io/endpoint?url=https://better-lyrics-themes-api.boidu.dev/api/badge/wolfthee-theme-bytm/rating&label=Ratings)](https://github.com/WolftheE/better-ytm)
+
+
+</div>
 
 ## About the Theme
 Better YTM is a custom css theme that I created to make youtube music look way more morden. 
