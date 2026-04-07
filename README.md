@@ -39,9 +39,12 @@ The way YouTube Music should have been
 This theme works best with the album art background enabled.
 If using a laptop, disable Show stylized animations to save power.
 
-## This version changelog - ver 2.1.1!
-- Fix bugs with the search page
-
+## This version changelog - ver 2.2.0!
+- Big but nothing major
+- Made more buttons match the theme
+- Added some animations like dropdown search
+- Hover tweaks
+- Fixed small visual bugs
 
 <div display="flex">
   <img src="images/2.png">
