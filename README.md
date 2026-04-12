@@ -39,9 +39,10 @@ The way YouTube Music should have been
 This theme works best with the album art background enabled.
 If using a laptop, disable Show stylized animations to save power.
 
-## This version changelog - ver 2.2.2
-- Made Navbar more transparent
-- Changed context menu
+## This version changelog - ver 2.3.0
+- Dialog backgrounds are now transparent
+- Search bar background is now transparent, animation is adjusted
+- Some form of optimization added
 
 <div display="flex">
   <img src="images/2.png">
