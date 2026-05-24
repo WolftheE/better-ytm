@@ -39,7 +39,11 @@ The way YouTube Music should have been
 This theme works best with the album art background enabled.
 If using a laptop, disable Show stylized animations to save power.
 
-## This version changelog - ver 3.0.0
+## 3.0.1 hotfix
+- Higher blur amount for background
+- made the Unsion Panel slightly higher
+
+## 3.0.0 changelog
 - Re-designed how I wanted the UI to be done, Remove lots of blured elements and added gradients to background
 - Increased Blur radius
 - Fixed some z-index problems
