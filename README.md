@@ -39,6 +39,13 @@ The way YouTube Music should have been
 This theme works best with the album art background enabled.
 If using a laptop, disable Show stylized animations to save power.
 
+## 3.1.0
+- Navbar and player bar uses a gradient background now
+- Instrumental Breaks is now like Archivetune's one
+- Added a blur background for the search bar
+- Removed the scrollbar for some places
+- Small tweaks
+
 ## 3.0.1 hotfix
 - Higher blur amount for background
 - made the Unsion Panel slightly higher

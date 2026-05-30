@@ -20,7 +20,7 @@ blyrics-long-word-threshold = 1000;
 :root {  
   
   /*Set this to your titlebar color*/ 
-  --titlebar-color: rgba(19,19,19,1);
+  --titlebar-color: rgb(0, 0, 0);
 
   /*The glow effect used, change this or remove it if you like! Also the main button color*/ 
   --glow: rgba(255,255,255,0.35); 
@@ -33,10 +33,11 @@ blyrics-long-word-threshold = 1000;
   --alt-color: #f03;
 
 
-  --popup-background: rgba(5,5,5,0.4);
+  --popup-background: rgba(5,5,5,0.6);
   --popup-border: rgba(255,255,255,0.15);
 
   --background-blur: blur(32px);
+  --searchbar-background-blur: blur(8px);
 
 
 
@@ -102,11 +103,66 @@ blyrics-long-word-threshold = 1000;
     filter: drop-shadow(0 0 1rem var(--blyrics-glow-color));
   }
   67% {
-    filter: drop-shadow(0 0 0.1rem var(--blyrics-glow-color));
+    filter: drop-shadow(0 0 0.2rem var(--blyrics-glow-color));
   }
   to {
     filter: drop-shadow(0 0 0rem var(--blyrics-glow-color));
   }
+}
+
+/* music note 
+.blyrics--instrumental-bg, .blyrics--instrumental-fill {
+  d: path("M 5 5 A 1 1 0 0 0 15 5 A 1 1 0 0 0 5 5 Z M 20 5 A 1 1 0 0 0 30 5 A 1 1 0 0 0 20 5 M 35 5 A 1 1 0 0 0 45 5 A 1 1 0 0 0 35 5");
+}
+
+.blyrics--wave-rect {
+  d: path("M -30 11 L 14 11 A 1 1 0 0 0 14 0 L -30 0 L -30 11");
+}
+
+.blyrics--wave-path {
+  d: path("M 0 0");
+}
+
+.blyrics--instrumental.blyrics--pre-animating:not(.blyrics--animating) .blyrics--wave-clip {
+	transform: translateX(-70%);
+}
+
+.blyrics--instrumental.blyrics--animating .blyrics--wave-clip {
+	transform: translateX(125%);
+}
+
+.blyrics--paused .blyrics--wave-clip {
+	transition-duration: 100000000s !important;
+	transform: translateX(100%) !important;
+}*/
+
+.blyrics--instrumental-icon {
+  display: none;
+}
+
+.blyrics--instrumental.blyrics--line::before {
+  padding-left: 0.3em;
+  font-size: calc(var(--blyrics-font-size) - 1.5rem );
+  content: "● ● ●";
+  color: var(--blyrics-lyric-inactive-color);
+}
+
+.blyrics--instrumental.blyrics--line::after {
+  padding-left: 0.3em;
+  font-size: calc(var(--blyrics-font-size) - 1.5rem );
+  content: "● ● ●";
+  position: absolute;
+  color: var(--blyrics-lyric-active-color);
+  overflow: hidden;
+  width: 0px;
+  text-wrap: nowrap;
+  mask-image: linear-gradient(90deg, black calc( 100% - 0.2em), transparent 100%);
+  transition: width calc(var(--blyrics-duration)* 1.2) linear var(--blyrics-anim-delay);
+}
+
+.blyrics--instrumental.blyrics--line.blyrics--pre-animating.blyrics--active.blyrics--animating::after {
+  width: 4.6em;
+    filter: drop-shadow(0px 0px 4px rgba(255,255,255,0.75));
 }
 
 .blyrics--word.blyrics--animating { /* Holds the synced lyric on longer notes */
@@ -115,10 +171,23 @@ blyrics-long-word-threshold = 1000;
 }
 
 
-.blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div) > span{
-  transition: color 0.5s ease-out; /* This makes played lyrics stays white */
+.blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div) > span, .blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div)::before{
+  transition: opacity 2s ease-out, color 0.5s ease-out; /* This makes played lyrics stays white */
   color: white !important;
 }
+
+.blyrics--instrumental.blyrics--line, .blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div)::before {  /* Make the music note part hidden unless its being played */
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 0.7s ease-out, color 0.5s ease-out, filter 0.3s ease-out !important; 
+}
+
+.blyrics--instrumental.blyrics--line.blyrics--pre-animating.blyrics--active.blyrics--animating {
+  opacity: 1;
+}
+
+
+
+
 .blyrics--line > span > span.blyrics-background-lyric { font-size: var(--smaller-lyrics-size); /* Edit the smaller lyrics */}
 
 .blyrics-container[data-sync="none"] > div { /* For non-synced lyrics */ color: white !important;}
@@ -329,10 +398,12 @@ ytmusic-responsive-list-item-renderer[play-button-state=paused], ytmusic-player-
 
 ytmusic-player-queue-item {border-bottom: none;} /*Removed border*/
 
-#tab-renderer { /* Fade out effect */
+#tab-renderer { /* Fade out effect also remove the scroll bar */
   padding: 16px 8px;
   mask-image: linear-gradient(180deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
+
+  scrollbar-color: rgba(255, 255, 255, 0.0) transparent !important;
 }
 
 
@@ -430,16 +501,17 @@ ytmusic-guide-entry-renderer[active] tp-yt-paper-item.ytmusic-guide-entry-render
 .search-container.ytmusic-search-box { /* Fixes some visual bugs with the search bar */ overflow: visible;}
 
 #layout[player-ui-state="PLAYER_PAGE_OPEN"] #nav-bar-background, #nav-bar-background.ytmusic-app-layout {
-  background-color: var(--titlebar-color) !important;
+  background: linear-gradient(var(--titlebar-color) 25%, rgba(0,0,0,0.01)) !important;
   border-bottom: none;
 }
-#nav-bar-background.ytmusic-app-layout { /* Remove duplicated background */ 
+#nav-bar-background.ytmusic-app-layout, ytmusic-app-layout[is-bauhaus-sidenav-enabled] #nav-bar-background.ytmusic-app-layout { /* Remove duplicated background */ 
   background: none;
+  border-bottom: none;
 }
 
 #layout[player-ui-state="PLAYER_PAGE_OPEN"] #nav-bar-background { /* ensure navbar stays transparent with media player open */ 
   backdrop-filter: none;
-  background-color: rgba(0,0,0,0) !important;
+  background: rgba(0,0,0,0) !important;
 }
 
 ytmusic-app-layout[is-bauhaus-sidenav-enabled] #nav-bar-divider.ytmusic-app-layout { border-top: none;}
@@ -456,6 +528,8 @@ ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .center-content.ytmusic-nav-bar { /*
   width: 100vw !important;
 }
 
+
+
 ytmusic-search-box[opened]:has(ytmusic-search-suggestion) .search-box, ytmusic-search-box[opened]:has(ytmusic-responsive-list-item-renderer) .search-box, ytmusic-search-box[is-bauhaus-sidenav-enabled][opened] .search-box.ytmusic-search-box {
   border-radius: var(--radius) var(--radius) 0 0 !important;  /* Make sure search bar follows border radius */
   border: none;
@@ -465,6 +539,25 @@ ytmusic-search-box[opened]:has(ytmusic-search-suggestion) .search-box, ytmusic-s
     background-color: transparent !important;
     color: white !important;
   }
+}
+
+/* workaround to blur the searchbar */
+ytmusic-search-box[is-bauhaus-sidenav-enabled]:not([opened]):not([has-query]) .search-box.ytmusic-search-box {
+  anchor-name: --search-bar;
+}
+
+ytmusic-app::after{
+  z-index: 4 !important;
+  content: "";
+  position: fixed;  /* Add the blurring */
+  position-anchor: --search-bar;      
+  top: calc(anchor(top)) !important;              
+  left: anchor(left) !important;           
+  width: calc(anchor-size(width)) !important;    
+  height: calc(anchor-size(height)) !important;  
+  backdrop-filter: var(--searchbar-background-blur);
+  border-radius: var(--radius);
+  box-shadow: none !important;
 }
 
 
@@ -556,8 +649,6 @@ ytmusic-search-box[has-query] .search-container.ytmusic-search-box, ytmusic-sear
 }
 
 
-
-
 /* Blur background of search dropdown, thank you Zortas! */
 
 ytmusic-app-layout:not([player-ui-state="PLAYER_PAGE_OPEN"]) #nav-bar-background {
@@ -597,8 +688,8 @@ ytmusic-app-layout:has(ytmusic-search-box[opened])::after {
 
 /* =============== PlayerBar ================== */
 #player-bar-background.ytmusic-app-layout { /* Makes the PlayerBar transparent */
-  background: rgba(15, 15, 15, 0.15);
-  backdrop-filter: var(--background-blur);
+  background: linear-gradient(rgba(0,0,0,0.1), var(--titlebar-color) 80%) !important;
+  backdrop-filter: none;
 }
 ytmusic-player-bar { /* Makes it transparent when in Media View */
   background-color: transparent;
