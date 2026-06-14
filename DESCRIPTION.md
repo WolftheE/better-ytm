@@ -18,6 +18,10 @@
 This theme works best with the album art background enabled.
 If using a laptop, disable Show stylized animations to save power.
 
+## 3.1.1
+- Update to fix rounding
+- Make rounding borders back to 8px
+- Made the background more blured
 
 ## 3.1.0
 - Navbar and player bar uses a gradient background now
