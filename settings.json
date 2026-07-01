@@ -1,8 +1,13 @@
 {
-    "colortitle": {
+    "help": {
         "pos": 0,
-        "type": "heading",
-        "label": "Colors"
+        "type": "toggle",
+        "label": "Test value",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "help",
+        "attrType": "rics",
+        "default": false
     },
     "title-bar-color": {
         "pos": 1,
