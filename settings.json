@@ -1,52 +1,116 @@
 {
-    "help": {
+    "layout": {
         "pos": 0,
+        "type": "heading",
+        "label": "Layout"
+    },
+    "album-cover-placement": {
+        "pos": 1,
+        "type": "dropdown",
+        "label": "Which side the album cover should be placed on",
+        "options": [
+            { "label": "Left (Default)", "value": "left" },
+            { "label": "Right", "value": "right" }
+        ],
+        "attribute": "placement",
+        "attrType": "rics",
+        "default": 0
+    },
+    "lyrics": {
+        "pos": 2,
+        "type": "heading",
+        "label": "Lyrics"
+    },
+    "affect-lyric-direction": {
+        "pos": 3,
         "type": "toggle",
-        "label": "Test value",
+        "label": "Should the placement of the album cover affets the text direction of the lyrics",
         "onValue": "true",
         "offValue": "false",
-        "attribute": "help",
+        "attribute": "affect-lyric-direction",
         "attrType": "rics",
         "default": false
     },
-    "title-bar-color": {
-        "pos": 1,
-        "type": "color",
-        "label": "Color of the header, best to match titlebar if using PWA",
-        "attribute": "title-bar-color",
-        "attrType": "rics",
-        "default": "#000000"
-    },
-    "background-color": {
-        "pos": 2,
-        "type": "color",
-        "label": "Color of background",
-        "attribute": "background-color",
-        "attrType": "rics",
-        "default": "#000000"
-    },
-    "font-color": {
-        "pos": 3,
-        "type": "color",
-        "label": "Font color",
-        "attribute": "font-color",
-        "attrType": "rics",
-        "default": "#ffffff"
-    },
-    "highlight-background-color": {
+    "opacity-after-line": {
         "pos": 4,
-        "type": "color",
-        "label": "Hightlight color",
-        "attribute": "highlight-background-color",
+        "type": "range",
+        "label": "Opacity of the lyric line after it has been sung, with autoscroll enabled",
+        "attribute": "opacity-after-line",
         "attrType": "rics",
-        "default": "#ffffff"
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.1
     },
-    "highlight-font-color": {
+    "blur-after-line": {
         "pos": 5,
-        "type": "color",
-        "label": "Hightlight font color",
-        "attribute": "highlight-font-color",
+        "type": "textfield",
+        "label": "Blur strength of the lyric line after it has been sung, with autoscroll enabled",
+        "attribute": "blur-after-line",
         "attrType": "rics",
-        "default": "#000000"
+        "default": ".5rem"
+    },
+    "track-info": {
+        "pos": 6,
+        "type": "heading",
+        "label": "Track Info"
+    },
+    "visible-track-info": {
+        "pos": 7,
+        "type": "toggle",
+        "label": "Show floating track info",
+        "attribute": "visibility-track-info",
+        "attrType": "rics",
+        "onValue": "visible",
+        "offValue": "hidden",
+        "default": true
+    },
+    "opacity-bg-track-info": {
+        "pos": 8,
+        "type": "range",
+        "label": "Opacity of the track info's background",
+        "attribute": "bg-opacity-track-info",
+        "attrType": "rics",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.5
+    },
+    "color-bg-track-info": {
+        "pos": 9,
+        "type": "color",
+        "label": "Color of the track info's background",
+        "attribute": "bg-color-track-info",
+        "attrType": "rics",
+        "default": "#000"
+    },
+    "blur-backdrop-track-info": {
+        "pos": 10,
+        "type": "textfield",
+        "label": "Blur strength of the track info's backdrop",
+        "attribute": "backdrop-blur-track-info",
+        "attrType": "rics",
+        "default": "1rem"
+    },
+    "album-cover": {
+        "pos": 11,
+        "type": "heading",
+        "label": "Album Cover"
+    },
+    "size-album-cover": {
+        "pos": 12,
+        "type": "textfield",
+        "label": "Size of the album cover in non-fullscreen mode",
+        "attribute": "yt-album-size",
+        "attrType": "css",
+        "default": "80%"
+    },
+    "border-radius-album-cover": {
+        "pos": 13,
+        "type": "textfield",
+        "label": "Border radius size of the album cover in non-fullscreen mode",
+        "attribute": "yt-album-border-radius",
+        "attrType": "css",
+        "default": "1rem"
     }
 }
