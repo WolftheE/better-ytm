@@ -1,10 +1,9 @@
 {
-    "color-of-theme-options": {
+    "colortitle": {
         "pos": 0,
         "type": "heading",
         "label": "Colors"
     },
-    
     "title-bar-color": {
         "pos": 1,
         "type": "color",
