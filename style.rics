@@ -8,6 +8,7 @@ $highlight-font-color: #000000; // The main color of hovering color font color a
 $player-linear-gradient: true; 
 $use-custom-icons: true; // uses custom icons
 $border-radius: 8px; // how rounded should ui elements looks
+
 $background-blur: 32px; // blur radius for backgorunds
 
 
@@ -241,10 +242,114 @@ tp-yt-paper-tab:nth-child(4).ytmusic-player-page[aria-selected="true"] {opacity:
     transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1), opacity 320ms cubic-bezier(0.4, 0, 0.2, 1), filter 320ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* album button actions */
+ytmusic-browse-response[has-background]:not([disable-gradient]) .background-gradient.ytmusic-browse-response {background-image: none; /* Removes repeating images on background*/}
+
+.immersive-background.ytmusic-browse-response ytmusic-fullbleed-thumbnail-renderer.ytmusic-browse-response, ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-immersive-header-renderer, .image.ytmusic-visual-header-renderer{
+   mask-image: linear-gradient(to bottom, rgba(0,0,0,1), transparent) !important; /* image gradient to fade out */
+}
+ytmusic-immersive-header-renderer[is-bauhaus-sidenav-enabled] .image.ytmusic-immersive-header-renderer {margin-left: 0;}
+
+
+
+
+
+#browse-page::before, #search-page::before { /* Background of home page */
+  z-index: -1000;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--blyrics-background-img);
+  background-size: cover !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  filter: brightness(35%) var(--album-art-blur);
+}
+
 
 /* ==================================
         Player Bar
 ====================================*/
+
+#player-bar-background.ytmusic-app-layout { /* Makes the PlayerBar transparent */
+  background: linear-gradient(transparent, $title-bar-color 80%) !important;
+  backdrop-filter: none;
+}
+ytmusic-player-bar { /* Makes it transparent when in Media View */
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+ytmusic-player-bar { /* Rearange elements of the bar around */
+  grid-template-columns: 1fr 0.5fr 1fr !important;
+  grid-template-areas: "start middle end" !important;
+  display: grid;
+}
+
+.left-controls.ytmusic-player-bar { /* Make the player controls center */
+  grid-area: middle !important;
+  justify-content: center !important;
+  .time-info {
+    transform: translateY(-20px);
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 50px;
+    color: $font-color;
+    padding-bottom: 0px;
+    margin-left: 2px;
+    text-shadow: 0 0 15px rgba(255,255,255,0.7);
+  }
+}
+
+ytmusic-player-bar[is-web-delhi-icons-enabled] .left-controls.ytmusic-player-bar yt-icon-button.ytmusic-player-bar { /* Change the Foward and back buttons*/
+  background: rgba(255,255,255,0.05);
+  width: 36px ;
+  height: 36px ;
+  & > #button {scale: 0.8;}
+}
+.play-pause-button { /* Make the Play button diffrent */
+  width: 52px !important;
+  height: 52px !important;
+  background: $highlight-background-color !important;
+  color: $highlight-font-color !important;
+  border-radius: 50% !important;
+  & button {scale: 0.8;}
+}
+ytmusic-player-bar[player-fullscreened] .left-controls.ytmusic-player-bar yt-icon-button.ytmusic-player-bar {
+    padding: 0;
+    transform: scale(1.1);
+}
+
+.middle-controls { /* Make the player info on the left */
+  grid-area: start !important;
+  width: 35vw;
+  justify-content: start !important;
+  padding-left: 16px !important;
+  & .content-info-wrapper.ytmusic-player-bar {margin: 0 12px;}
+}
+.thumbnail-image-wrapper.ytmusic-player-bar {  /* round it abit */
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+ytmusic-player-bar[is-web-delhi-icons-enabled] yt-icon-button.ytmusic-player-bar { /* Playerbar buttons */
+  border-radius: 8px;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out, box-shadow 0.3s ease-out, scale 0.2s ease-out, transform 0.4s;
+
+  &:hover {
+    border-radius: $border-radius;
+    scale: 1.1;
+    color: $highlight-font-color !important;
+    background: $highlight-background-color !important;
+  }
+
+  &:active {scale: 0.9;}
+}
+
 
 /* Round the progress bar */
 #primaryProgress.tp-yt-paper-progress {
@@ -286,7 +391,170 @@ ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .right-content.ytmusic-nav-bar {padd
   background-color: white;
 }
 
+/* ============================ */
+/*             Navbar           */
+/* ============================ */
 
+.search-container.ytmusic-search-box { /* Fixes some visual bugs with the search bar */ overflow: visible;}
+
+#layout[player-ui-state="PLAYER_PAGE_OPEN"] #nav-bar-background, #nav-bar-background.ytmusic-app-layout {
+  background: linear-gradient( $title-bar-color 15%, transparent) !important;
+  border-bottom: none;
+}
+#nav-bar-background.ytmusic-app-layout, ytmusic-app-layout[is-bauhaus-sidenav-enabled] #nav-bar-background.ytmusic-app-layout { /* Remove duplicated background */ 
+  background: none;
+  border-bottom: none;
+}
+
+#layout[player-ui-state="PLAYER_PAGE_OPEN"] #nav-bar-background { /* ensure navbar stays transparent with media player open */ 
+  backdrop-filter: none;
+  background: rgba(0,0,0,0) !important;
+}
+
+/* workaround to blur the searchbar */
+ytmusic-search-box[is-bauhaus-sidenav-enabled]:not([opened]):not([has-query]) .search-box.ytmusic-search-box {
+  anchor-name: --search-bar;
+}
+
+ytmusic-app::after{
+  z-index: 4 !important;
+  content: "";
+  position: fixed;  /* Add the blurring */
+  position-anchor: --search-bar;      
+  top: calc(anchor(top)) !important;              
+  left: anchor(left) !important;           
+  width: calc(anchor-size(width)) !important;    
+  height: calc(anchor-size(height)) !important;  
+  backdrop-filter: $background-blur;
+  border-radius: $border-radius;
+  box-shadow: none !important;
+}
+
+/* button */
+.ytSpecButtonShapeNextMono.ytSpecButtonShapeNextOutline, .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE] a.ytmusic-chip-cloud-chip-renderer,.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_UNKNOWN] a.ytmusic-chip-cloud-chip-renderer, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_DEFAULT] a.ytmusic-chip-cloud-chip-renderer, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_ICON_SECOND] a.ytmusic-chip-cloud-chip-renderer, ytmusic-search-box[is-bauhaus-sidenav-enabled]:not([opened]):not([has-query]) .search-box.ytmusic-search-box, .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--outline, yt-icon-button.ytmusic-carousel-shelf-renderer, button.ytmusic-sort-filter-button-renderer, ytmusic-search-box[is-bauhaus-sidenav-enabled] .search-box.ytmusic-search-box {
+  border-radius: $border-radius !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  transition: background-color 0.23s ease-in-out, color 0.23s ease-out, scale 0.3s cubic-bezier(0.34, 2.1, 0.64, 1);
+  overflow: visible !important;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+  &:hover {
+    background-color: $highlight-background-color !important;
+    color: $highlight-font-color !important;
+  }
+  &:active {scale: 0.95;}
+}
+
+.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled {border-radius: $border-radius !important;}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_PRIMARY] a.ytmusic-chip-cloud-chip-renderer, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_SECONDARY] a.ytmusic-chip-cloud-chip-renderer, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_UNKNOWN][is-selected] a.ytmusic-chip-cloud-chip-renderer, ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_ICON_SECOND][is-selected] a.ytmusic-chip-cloud-chip-renderer, .play-button.ytmusic-immersive-header-renderer, .radio-button.ytmusic-immersive-header-renderer {
+  background-color: $highlight-background-color !important;
+  color: $highlight-font-color !important;
+  border-radius: $border-radius;
+}
+ytmusic-subscribe-button-renderer .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--outline, #button-shape-subscribe {
+  background-color: rgb(255, 64, 99) !important;
+  border-radius: $border-radius;
+  color: white !important;
+  & > * {
+    color: white !important;
+  }
+  &:hover > * {
+    color: black !important;
+  }
+}
+
+ytmusic-logo.ytmusic-nav-bar {
+  transition: scale 0.3s;
+
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+tp-yt-paper-listbox.ytmusic-menu-popup-renderer *:not(yt-formatted-string, yt-icon.ytmusic-menu-service-item-download-renderer > .ytSpecIconShapeHost > div > svg > rect) {height: 36px !important; /* fix the P symbol for broke people like me :( */}
+tp-yt-paper-item.ytmusic-menu-service-item-download-renderer {--paper-item-min-height: 32px;} /* Make each item in the context menu shorter */
+
+tp-yt-paper-listbox.ytmusic-menu-popup-renderer, .ytmusicMultiPageMenuRendererMenuContainer {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+ytmusic-menu-navigation-item-renderer, ytmusic-menu-service-item-renderer, ytmusic-toggle-menu-service-item-renderer, ytmusic-menu-service-item-download-renderer, ytd-compact-link-renderer, .category-menu-item.ytmusic-settings-page {
+  border-radius: $border-radius !important;
+  transition: background-color 0.2s ease-out, color 0.25s ease-out;
+
+  &:hover {
+    background: $highlight-background-color !important;
+    color: $highlight-font-color !important;
+    & * {
+      color: $highlight-font-color !important;
+    }
+  }
+}
+
+tp-yt-iron-dropdown {
+  z-index: 4;
+  display: block !important;
+  visibility: visible;
+  transition: visibility 0.5s !important;
+}
+
+tp-yt-iron-dropdown[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+
+tp-yt-iron-dropdown > div { /* Make the context menu background diffrent */
+  background: $background-color !important;
+  color: white;
+  border: 1px solid color-mix(in srgb, $font-color, transparent 75%) !important;
+  border-radius: $border-radius;
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  opacity: 0;
+  transform: scale(0.85) !important; 
+}
+
+tp-yt-iron-dropdown:not(tp-yt-iron-dropdown[aria-hidden="true"]) > div{
+  opacity: 1 !important;
+  transform: scale(1) !important; 
+}
+
+#container.ytmusic-multi-select-menu-renderer, #items.ytmusic-multi-select-menu-renderer, tp-yt-paper-listbox {
+  min-width: 305px;
+  border: none !important;
+  border-radius: none !important;
+  margin:0;
+  background-color: transparent !important;
+}
+
+.ytmusicMultiPageMenuRendererHost {background: transparent;} /* Fix dupcliated visual bug */
+ytmusic-browse-response[has-background]:not([disable-gradient]) .background-gradient.ytmusic-browse-response {border-top: 1px solid rgba(255,255,255,0.15);}
+.category-menu-item.iron-selected.ytmusic-settings-page {background: color-mix(in srgb, $font-color, transparent 95%) !important;}
+
+ytmusic-search-box[has-query] input.ytmusic-search-box, ytmusic-search-box[opened] input.ytmusic-search-box {
+    color: unset; /* fixes some visual bugs */
+}
+
+tp-yt-paper-dialog, ytmusic-dialog {  /* Dialogs */
+  background: $background-color !important;
+  color: white;
+  border: 1px solid color-mix(in srgb, $font-color, transparent 75%) !important;
+  border-radius: $border-radius;
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+}
+
+.category-menu.ytmusic-settings-page {
+  padding: 8px;
+}
+
+ytmusic-add-to-playlist-renderer, ytmusic-playlist-form { /* hide the background on these dialogs */
+  background: transparent;
+  border: none;
+  caret-color: $highlight-background-color;
+}
 
 /* ==================================
         Icon and text changes
@@ -319,7 +587,5 @@ ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .right-content.ytmusic-nav-bar {padd
   ytmusic-like-button-renderer[like-status="DISLIKE"] > .like > button > div > span { 
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='m480-120.67-46.67-42q-104.18-95.08-172.25-164.04Q193-395.67 152.67-450.17q-40.34-54.5-56.5-99.16Q80-594 80-640q0-91.44 61.33-152.72 61.34-61.28 152-61.28 55.34 0 103.34 25.33 48 25.34 83.33 72.67 39.33-49.33 86.33-73.67 47-24.33 100.34-24.33 90.66 0 152 61.28Q880-731.44 880-640q0 46-16.17 90.67-16.16 44.66-56.5 99.16-40.33 54.5-108.41 123.46-68.07 68.96-172.25 164.04l-46.67 42Zm0-88.66q99.49-90.67 163.75-155.5Q708-429.67 745.67-478.17q37.66-48.5 52.66-86.42t15-75.31q0-64.1-41.33-105.77-41.33-41.66-105.18-41.66-50.02 0-92.59 29.83-42.56 29.83-65.56 81.5h-58q-22.34-51-64.9-81.17-42.57-30.16-92.59-30.16-63.85 0-105.18 41.66-41.33 41.67-41.33 105.88 0 37.46 15 75.62 15 38.17 52.66 87Q252-428.33 316.67-363.83q64.66 64.5 163.33 154.5Zm0-289Z'/%3E%3C/svg%3E");
   }
-
-  /* both buttons if one is active */
 
 }
