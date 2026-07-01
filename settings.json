@@ -1,0 +1,48 @@
+{
+    "color-of-theme-options": {
+        "pos": 0,
+        "type": "heading",
+        "label": "Colors"
+    },
+    
+    "title-bar-color": {
+        "pos": 1,
+        "type": "color",
+        "label": "Color of the header, best to match titlebar if using PWA",
+        "attribute": "title-bar-color",
+        "attrType": "rics",
+        "default": "#000000"
+    },
+    "background-color": {
+        "pos": 2,
+        "type": "color",
+        "label": "Color of background",
+        "attribute": "background-color",
+        "attrType": "rics",
+        "default": "#000000"
+    },
+    "font-color": {
+        "pos": 3,
+        "type": "color",
+        "label": "Font color",
+        "attribute": "font-color",
+        "attrType": "rics",
+        "default": "#ffffff"
+    },
+    "highlight-background-color": {
+        "pos": 4,
+        "type": "color",
+        "label": "Hightlight color",
+        "attribute": "highlight-background-color",
+        "attrType": "rics",
+        "default": "#ffffff"
+    },
+    "highlight-font-color": {
+        "pos": 5,
+        "type": "color",
+        "label": "Hightlight font color",
+        "attribute": "highlight-font-color",
+        "attrType": "rics",
+        "default": "#000000"
+    }
+}

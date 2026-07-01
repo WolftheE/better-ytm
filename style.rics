@@ -1,0 +1,162 @@
+/* Configurable variables */
+$title-bar-color: #000000; // Set this as the same color as your titlebar
+$background-color: #000000; // background color of most ui elements
+$font-color: #ffffff,
+$main-highlight-color: #000000; // The main color of hovering color font color and icon color
+$main-highlight-background-color: #ffffff; // The main color of hovering color, play/pause button, progress bar, etc
+
+$player-linear-gradient: true; 
+$use-custom-icons: true; // uses custom icons
+$border-radius: 8px; // how rounded should ui elements looks
+$background-blur: 32px; // blur radius for backgorunds
+
+
+$new-lyric-style: true; // Uses my custom lyric style
+$custom-lyric-note: true; // changes the lyric icon to 3 dots
+
+$glow-effects: false; // uses a glowing effect on more elements
+
+
+:root {  
+  /* blyrics config, feel free to edit this */
+  --blyrics-footer-bg-color: transparent;
+  --blyrics-footer-border-color: transparent;
+  --blyrics-active-scale: 1.0;
+  --blyrics-scale: 0.5;
+  --blyrics-line-height: 1.5;
+  --blyrics-font-size: 4rem;
+  --blyrics-font-weight: 650;
+  --smaller-lyrics-size: 0.6em;
+  --blyrics-fullscreen-panel-size: 55%;
+
+  --album-art-blur: blur(256px);
+  --album-brightness: 85%;
+  --music-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 24 24'%3E%3Cpath d='M10 21q-1.65 0-2.825-1.175T6 17t1.175-2.825T10 13q.575 0 1.063.138t.937.412V4q0-.425.288-.712T13 3h4q.425 0 .713.288T18 4v2q0 .425-.288.713T17 7h-3v10q0 1.65-1.175 2.825T10 21'/%3E%3C/svg%3E%0A");
+
+
+  --bezier-hover: cubic-bezier(.2, 0, .6, 1);
+}
+/* ============================
+        Core of theme  
+================================*/
+
+@if $new-lyric-style == true {
+
+  .blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div) > span, .blyrics-container:has(.blyrics--active):not(.blyrics-user-scrolling) > div:not(.blyrics--active):not(.blyrics--active ~ div)::before{
+    transition: opacity 2s ease-out, color 0.4s ease-out; /* This makes played lyrics stays white */
+    color: white !important;
+  }
+
+  @keyframes blyrics-wobble { /* Cloud like animation for words */
+	  0% {
+		  transform: translateY(0px) scaleX(1);
+	  }
+      12.5% {
+        transform: scaleX(1.07);
+        animation-timing-function: ease-in-out;
+      }
+	  75% {
+		  transform: translateY(-0.125em) scaleX(1);
+	  }
+	  100% {
+	  	transform: translateY(0px) scaleX(1);
+          animation-timing-function: ease-out;
+	  }
+  }
+
+  /* Make glow only show on long words */
+  .blyrics--word::after { 
+    --blyrics-glow-color: color(display-p3 1 1 1 / 0.1); 
+  }
+
+  .blyrics--word[data-long-word="true"]::after { 
+      --blyrics-glow-color: color(display-p3 1 1 1 / 1); 
+  }
+
+  .blyrics--word.blyrics--animating { /* Makes words use the wobble and holds the wobble on long words */
+    animation: blyrics-wobble calc(max(calc(var(--blyrics-duration)), 0.5s) * 1.2) forwards ease; 
+    animation-delay: var(--blyrics-anim-delay);
+  }
+}
+
+
+
+
+/* makes the music note 3 dots if enabled */
+@if $custom-lyric-note == true {
+
+  .blyrics--instrumental-icon {
+    display: none;
+  }
+
+  .blyrics--instrumental.blyrics--line::before {
+    padding-left: 0.3em;
+    font-size: calc(var(--blyrics-font-size) - 1.5rem );
+    content: "● ● ●";
+    color: var(--blyrics-lyric-inactive-color);
+  }
+
+  .blyrics--instrumental.blyrics--line::after {
+    padding-left: 0.3em;
+    font-size: calc(var(--blyrics-font-size) - 1.5rem );
+    content: "● ● ●";
+    position: absolute;
+    color: var(--blyrics-lyric-active-color);
+    overflow: hidden;
+    width: 0px;
+    text-wrap: nowrap;
+    mask-image: linear-gradient(90deg, black calc( 100% - 0.2em), transparent 100%);
+    transition: width calc(var(--blyrics-duration)* 1.1) linear var(--blyrics-anim-delay);
+  }
+
+  .blyrics--instrumental.blyrics--line.blyrics--pre-animating.blyrics--active.blyrics--animating::after {
+    width: 4.6em;
+    filter: drop-shadow(0px 0px 4px rgba(255,255,255,0.75));
+  }
+}
+
+/* ==============================
+        Global changes
+================================*/
+
+
+
+
+
+/* ==================================
+        Icon and text changes
+====================================*/
+
+
+
+@if $use-custom-icons == true {
+  /* The like buttons */
+  ytmusic-like-button-renderer[like-status="INDIFFERENT"] > .like > button > div > span { 
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='m480-120.67-46.67-42q-104.18-95.08-172.25-164.04Q193-395.67 152.67-450.17q-40.34-54.5-56.5-99.16Q80-594 80-640q0-91.44 61.33-152.72 61.34-61.28 152-61.28 55.34 0 103.34 25.33 48 25.34 83.33 72.67 39.33-49.33 86.33-73.67 47-24.33 100.34-24.33 90.66 0 152 61.28Q880-731.44 880-640q0 46-16.17 90.67-16.16 44.66-56.5 99.16-40.33 54.5-108.41 123.46-68.07 68.96-172.25 164.04l-46.67 42Zm0-88.66q99.49-90.67 163.75-155.5Q708-429.67 745.67-478.17q37.66-48.5 52.66-86.42t15-75.31q0-64.1-41.33-105.77-41.33-41.66-105.18-41.66-50.02 0-92.59 29.83-42.56 29.83-65.56 81.5h-58q-22.34-51-64.9-81.17-42.57-30.16-92.59-30.16-63.85 0-105.18 41.66-41.33 41.67-41.33 105.88 0 37.46 15 75.62 15 38.17 52.66 87Q252-428.33 316.67-363.83q64.66 64.5 163.33 154.5Zm0-289Z'/%3E%3C/svg%3E");
+  }
+
+  ytmusic-like-button-renderer[like-status="LIKE"] > .like > button > div > span { 
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='m480-120.67-46.67-42q-104.33-95-172.33-164-68-69-108.33-123.5-40.34-54.5-56.5-99.16Q80-594 80-640q0-91.33 61.33-152.67 61.34-61.33 152-61.33 55.34 0 103.34 25.33 48 25.34 83.33 72.67 39.33-49.33 86.33-73.67 47-24.33 100.34-24.33 90.66 0 152 61.33Q880-731.33 880-640q0 46-16.17 90.67-16.16 44.66-56.5 99.16Q767-395.67 699-326.67t-172.33 164l-46.67 42Z'/%3E%3C/svg%3E");
+  }
+
+  ytmusic-like-button-renderer[like-status="LIKE"] > .dislike > button > div > span { 
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='M481-83.67Q346.33-219.33 266.83-302.33T145.83-440q-41.5-54.67-53.66-93.55Q80-572.43 80-620.28 80-712 144-776t156-64q45 0 87 16.5t75 47.5l-62 216h120.67l-42 367 122.66-407H480l71-212q25-14 52.5-21t56.5-7q92 0 156 64t64 156q0 46.75-12 85.71-12 38.96-53.33 94.12-41.34 55.17-120.34 138-79 82.84-213.33 218.5Zm-63.67-158 28.34-251.66H311.33l73.67-257q-20-10-41.17-16.5-21.16-6.5-43.83-6.5-63.52 0-108.43 44.9-44.9 44.91-44.9 108.43 0 32.11 12.16 64.22 12.17 32.11 42.67 74.61t83 99.67q52.5 57.17 132.83 139.83Zm153.34-28Q701-398 757.17-478.67q56.16-80.66 56.16-141.58 0-63.08-44.9-108.08-44.91-45-108.43-45-13.89 0-27.78 2.5t-26.89 7.16l-32 97H690l-119.33 397Zm119.33-397ZM311.33-493.33Z'/%3E%3C/svg%3E");
+  }
+
+
+  /* The dislike buttons */
+  ytmusic-like-button-renderer[like-status="INDIFFERENT"] > .dislike > button > div > span { 
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='M481-83.67Q346.33-219.33 266.83-302.33T145.83-440q-41.5-54.67-53.66-93.55Q80-572.43 80-620.28 80-712 144-776t156-64q45 0 87 16.5t75 47.5l-62 216h120.67l-42 367 122.66-407H480l71-212q25-14 52.5-21t56.5-7q92 0 156 64t64 156q0 46.75-12 85.71-12 38.96-53.33 94.12-41.34 55.17-120.34 138-79 82.84-213.33 218.5Zm-63.67-158 28.34-251.66H311.33l73.67-257q-20-10-41.17-16.5-21.16-6.5-43.83-6.5-63.52 0-108.43 44.9-44.9 44.91-44.9 108.43 0 32.11 12.16 64.22 12.17 32.11 42.67 74.61t83 99.67q52.5 57.17 132.83 139.83Zm153.34-28Q701-398 757.17-478.67q56.16-80.66 56.16-141.58 0-63.08-44.9-108.08-44.91-45-108.43-45-13.89 0-27.78 2.5t-26.89 7.16l-32 97H690l-119.33 397Zm119.33-397ZM311.33-493.33Z'/%3E%3C/svg%3E");
+  }
+
+  ytmusic-like-button-renderer[like-status="DISLIKE"] > .dislike > button > div > span {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='M481-83.67Q346.33-219.33 266.83-302.33T145.83-440q-41.5-54.67-53.66-93.67Q80-572.67 80-620q0-92 64-156t156-64q45 0 87 16.5t75 47.5l-62 216h120.67l-42 367 122.66-407H480l71-212q25-14 52.5-21t56.5-7q92 0 156 64t64 156q0 46.67-12 85.67t-53.33 94.16q-41.34 55.17-120.34 138-79 82.84-213.33 218.5Z'/%3E%3C/svg%3E");
+  }
+
+  ytmusic-like-button-renderer[like-status="DISLIKE"] > .like > button > div > span { 
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='32px' viewBox='0 -960 960 960' width='40px' fill='%23F3F3F3'%3E%3Cpath d='m480-120.67-46.67-42q-104.18-95.08-172.25-164.04Q193-395.67 152.67-450.17q-40.34-54.5-56.5-99.16Q80-594 80-640q0-91.44 61.33-152.72 61.34-61.28 152-61.28 55.34 0 103.34 25.33 48 25.34 83.33 72.67 39.33-49.33 86.33-73.67 47-24.33 100.34-24.33 90.66 0 152 61.28Q880-731.44 880-640q0 46-16.17 90.67-16.16 44.66-56.5 99.16-40.33 54.5-108.41 123.46-68.07 68.96-172.25 164.04l-46.67 42Zm0-88.66q99.49-90.67 163.75-155.5Q708-429.67 745.67-478.17q37.66-48.5 52.66-86.42t15-75.31q0-64.1-41.33-105.77-41.33-41.66-105.18-41.66-50.02 0-92.59 29.83-42.56 29.83-65.56 81.5h-58q-22.34-51-64.9-81.17-42.57-30.16-92.59-30.16-63.85 0-105.18 41.66-41.33 41.67-41.33 105.88 0 37.46 15 75.62 15 38.17 52.66 87Q252-428.33 316.67-363.83q64.66 64.5 163.33 154.5Zm0-289Z'/%3E%3C/svg%3E");
+  }
+
+  /* both buttons if one is active */
+
+}
