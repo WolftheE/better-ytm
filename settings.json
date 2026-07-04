@@ -15,7 +15,7 @@
     "background-color": {
         "pos": 2,
         "type": "color",
-        "label": "Color of background",
+        "label": "Color of background, effect popups and other UI backgrounds",
         "attribute": "background-color",
         "attrType": "rics",
         "default": "#000000"
@@ -23,7 +23,7 @@
     "font-color": {
         "pos": 3,
         "type": "color",
-        "label": "Font color",
+        "label": "Font color, also slightly affects the border color",
         "attribute": "font-color",
         "attrType": "rics",
         "default": "#ffffff"
@@ -31,7 +31,7 @@
     "highlight-background-color": {
         "pos": 4,
         "type": "color",
-        "label": "Hightlight color",
+        "label": "Hightlight color, the color used when hovering over some elements",
         "attribute": "highlight-background-color",
         "attrType": "rics",
         "default": "#ffffff"
@@ -39,9 +39,96 @@
     "highlight-font-color": {
         "pos": 5,
         "type": "color",
-        "label": "Hightlight font color",
+        "label": "Hightlight font color, the color used for the font, when hovering over some elements",
         "attribute": "highlight-font-color",
         "attrType": "rics",
         "default": "#000000"
+    },
+
+    "player-linear-gradient": {
+        "pos": 6,
+        "type": "toggle",
+        "label": "Fade blured player background into background color?",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "player-linear-gradient",
+        "attrType": "rics",
+        "default": true
+    },
+    "use-custom-icons": {
+        "pos": 7,
+        "type": "toggle",
+        "label": "Use custom Icons for some elements like the like button",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "use-custom-icons",
+        "attrType": "rics",
+        "default": true
+    },
+    "border-radius": {
+        "pos": 8,
+        "type": "textfield",
+        "label": "How rounded elements are",
+        "attribute": "border-radius",
+        "attrType": "rics",
+        "default": "8px"
+    },
+    "background-blur": {
+        "pos": 8,
+        "type": "textfield",
+        "label": "How much blur should be used for background",
+        "attribute": "background-blur",
+        "attrType": "rics",
+        "default": "8px"
+    },
+    "new-lyric-style": {
+        "pos": 9,
+        "type": "toggle",
+        "label": "Use custom Icons for some elements like the like button",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "new-lyric-style",
+        "attrType": "rics",
+        "default": true
+    },
+    "custom-lyric-note": {
+        "pos": 10,
+        "type": "toggle",
+        "label": "Use custom Icons for some elements like the like button",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "custom-lyric-note",
+        "attrType": "rics",
+        "default": true
+    },
+    "$ultra-performance-mode" : {
+        "pos": 11,
+        "type": "toggle",
+        "label": "Ultra Performance Mode, last attempt of making YTM usable for your Potato! Also make sure to disable 'Show blurred album art background' and 'Show stylized animations'",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "ultra-performance-mode",
+        "attrType": "rics",
+        "default": false
+    },
+    "glow-effects": {
+        "pos": 11,
+        "type": "toggle",
+        "label": "Use glow effect on UI elements",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "glow-effects",
+        "attrType": "rics",
+        "default": false
+    },
+    "glassy-ui": {
+        "pos": 12,
+        "type": "toggle",
+        "label": "Use a transparent background with blur on element's background (BETA, WARNING: WILL impact performance!)",
+        "onValue": "true",
+        "offValue": "false",
+        "attribute": "glassy-ui",
+        "attrType": "rics",
+        "default": false
     }
 }
