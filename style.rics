@@ -207,6 +207,9 @@ blyrics-line-synced-animation-delay = 100;
    }
 }
 
+ytmusic-player-page:not([is-mweb-modernization-enabled]):not([has-av-switcher]) #main-panel.ytmusic-player-page {
+  padding: 0 !important;
+}
 
 
 @if $album-glow == true {
