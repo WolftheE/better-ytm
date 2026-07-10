@@ -2,7 +2,7 @@
     "info": {
         "pos": 0,
         "type": "heading",
-        "label": "Layout"
+        "label": "Theme Options"
     },
     "title-bar-color": {
         "pos": 1,
@@ -44,11 +44,18 @@
         "attrType": "rics",
         "default": "#000000"
     },
-
-    "player-linear-gradient": {
+    "accent-color": {
         "pos": 6,
+        "type": "color",
+        "label": "The Accent Color for some elements like the progress bar",
+        "attribute": "accent-color",
+        "attrType": "rics",
+        "default": "#FF0033"
+    },
+    "player-linear-gradient": {
+        "pos": 7,
         "type": "toggle",
-        "label": "Fade blured player background into background color?",
+        "label": "Fade blured player background into a darker color",
         "onValue": "true",
         "offValue": "false",
         "attribute": "player-linear-gradient",
@@ -56,7 +63,7 @@
         "default": true
     },
     "use-custom-icons": {
-        "pos": 7,
+        "pos": 8,
         "type": "toggle",
         "label": "Use custom Icons for some elements like the like button",
         "onValue": "true",
@@ -66,7 +73,7 @@
         "default": true
     },
     "border-radius": {
-        "pos": 8,
+        "pos": 9,
         "type": "textfield",
         "label": "How rounded elements are",
         "attribute": "border-radius",
@@ -74,7 +81,7 @@
         "default": "8px"
     },
     "background-blur": {
-        "pos": 8,
+        "pos": 10,
         "type": "textfield",
         "label": "How much blur should be used for background",
         "attribute": "background-blur",
@@ -82,7 +89,7 @@
         "default": "8px"
     },
     "new-lyric-style": {
-        "pos": 9,
+        "pos": 11,
         "type": "toggle",
         "label": "Use custom Icons for some elements like the like button",
         "onValue": "true",
@@ -92,7 +99,7 @@
         "default": true
     },
     "custom-lyric-note": {
-        "pos": 10,
+        "pos": 12,
         "type": "toggle",
         "label": "Use custom Icons for some elements like the like button",
         "onValue": "true",
@@ -101,33 +108,47 @@
         "attrType": "rics",
         "default": true
     },
-    "$ultra-performance-mode" : {
-        "pos": 11,
+    "album-glow": {
+        "pos": 13,
         "type": "toggle",
-        "label": "Ultra Performance Mode, last attempt of making YTM usable for your Potato! Also make sure to disable 'Show blurred album art background' and 'Show stylized animations'",
+        "label": "Use a glowing effect behind the album art",
         "onValue": "true",
         "offValue": "false",
-        "attribute": "ultra-performance-mode",
+        "attribute": "album-glow",
         "attrType": "rics",
-        "default": false
+        "default": "true"
     },
-    "glow-effects": {
-        "pos": 11,
-        "type": "toggle",
-        "label": "Use glow effect on UI elements",
-        "onValue": "true",
-        "offValue": "false",
-        "attribute": "glow-effects",
+    "background-album-brightness": {
+        "pos": 14,
+        "type": "textfield",
+        "label": "How bright should the blured album background be",
+        "attribute": "background-album-brightness",
         "attrType": "rics",
-        "default": false
+        "default": "40%"
     },
-    "glassy-ui": {
-        "pos": 12,
+    "background-album-saturation": {
+        "pos": 15,
+        "type": "textfield",
+        "label": "How saturated should the album background be",
+        "attribute": "background-album-saturation",
+        "attrType": "rics",
+        "default": "125%"
+    },
+    "background-album-blur": {
+        "pos": 16,
+        "type": "textfield",
+        "label": "How much blur should be used for album background",
+        "attribute": "background-album-blur",
+        "attrType": "rics",
+        "default": "128px"
+    },
+    "uwu-mode": {
+        "pos": 17,
         "type": "toggle",
-        "label": "Use a transparent background with blur on element's background (BETA, WARNING: WILL impact performance!)",
+        "label": ":3",
         "onValue": "true",
         "offValue": "false",
-        "attribute": "glassy-ui",
+        "attribute": "uwu-mode",
         "attrType": "rics",
         "default": false
     }
