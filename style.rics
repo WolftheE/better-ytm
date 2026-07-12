@@ -10,7 +10,6 @@ Thanks to the following themes for some of their code
 - Lucid by drago-oo
 */
 
-
 /* Configurable variables */
 $title-bar-color: #000000; // Set this as the same color as your titlebar if using PWA
 $background-color: #000000; // background color of most ui elements
@@ -29,9 +28,11 @@ $new-lyric-style: true; // Uses my custom lyric style
 $custom-lyric-note: true; // changes the lyric icon to 3 dots
 $album-glow: true;
 
-$background-album-brightness: 40%;
+$background-album-brightness: 40%; //40%;
 $background-album-saturation: 125%;
 $background-album-blur: 128px;
+
+$center-search-bar: false; // Buggy so its disabled by default
 
 $uwu-mode: false; // WIP lol
 
@@ -65,6 +66,11 @@ blyrics-line-synced-animation-delay = 100;
 
 
   --bezier-hover: cubic-bezier(.2, 0, .6, 1);
+
+
+
+  /* ytm varaibles */
+  --ytmusic-overlay-text-secondary: color-mix(in srgb, $font-color, transparent 30%);
 }
 /* ============================
         Core of theme  
@@ -73,7 +79,7 @@ blyrics-line-synced-animation-delay = 100;
 @if $new-lyric-style == true {
 
   .blyrics-container:has(.blyrics--active) > div:not(.blyrics--active):not(.blyrics--active ~ div) > span{
-    transition: opacity 2s ease-out, color 0.4s ease-out 0.1s; /* This makes played lyrics stays white */
+    transition: opacity 2s ease-out, color 0.4s ease-out 0.13s; /* This makes played lyrics stays white */
     color: white !important;
   }
 
@@ -86,7 +92,7 @@ blyrics-line-synced-animation-delay = 100;
         animation-timing-function: ease-in-out;
       }
 	  75% {
-		  transform: translateY(-0.12em) scaleX(0.97);
+		  transform: translateY(-0.1em) scaleX(0.97);
 	  }
 	  100% {
 	  	transform: translateY(0px) scaleX(1);
@@ -133,19 +139,16 @@ blyrics-line-synced-animation-delay = 100;
 	  0% {
 		  width: 0px;
       margin-right: 88.24px;
-      text-shadow: 0 0 0px var(--blyrics-lyric-active-color);
+      filter: drop-shadow(0 0 4.5px var(--blyrics-lyric-active-color));
 	  }
-    5% {
-      text-shadow: 0 0 10px var(--blyrics-lyric-active-color);
-    }
 
-	  96% {
-      text-shadow: 0 0 10px var(--blyrics-lyric-active-color);
-	  }
+    95% {
+      filter: drop-shadow(0 0 4.5px var(--blyrics-lyric-active-color));
+    }
     100% {
 	  	width: 88.24px;
       margin-right: 0;
-      text-shadow: 0 0 0px var(--blyrics-lyric-active-color);
+      filter: drop-shadow(0 0 0px var(--blyrics-lyric-active-color));
     }
   }
 
@@ -179,7 +182,7 @@ blyrics-line-synced-animation-delay = 100;
   }
 
   .blyrics--instrumental.blyrics--line.blyrics--pre-animating.blyrics--active.blyrics--animating::after {
-    animation: playing-animation calc(var(--blyrics-duration) * 0.9) linear forwards var(--blyrics-anim-delay);
+    animation: playing-animation calc(var(--blyrics-duration) - 1.4s) linear forwards var(--blyrics-anim-delay);
     animation-fill-mode: forwards; 
     //filter: drop-shadow(0px 0px 4px rgba(255,255,255,0.75));
   }
@@ -249,6 +252,19 @@ ytmusic-player-page:before { /* Cool blured background with Blyrics! */
   clip-path: inset(0);
 }
 
+@if $center-search-bar == true {
+  ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .center-content.ytmusic-nav-bar { /* Center Search bar */ 
+    position: absolute;
+    justify-content: center;
+    align-items: center !important;
+    padding-left: 0 !important;
+    flex-shrink: 1 !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    width: 100vw !important;
+  }
+}
 /* ==============================
         Global changes
 ================================*/
@@ -258,6 +274,11 @@ ytmusic-player-page:before { /* Cool blured background with Blyrics! */
 body, ytmusic-app[is-bauhaus-sidenav-enabled] #guide-wrapper.ytmusic-app, ytmusic-player-page  {
     background-color: $background-color;
     background: $background-color;
+}
+
+/* makes text colors matches */
+.title.ytmusic-guide-entry-renderer, .title.ytmusic-two-row-item-renderer, ytmusic-guide-entry-renderer, ytmusic-guide-entry-renderer:not([is-primary]) .title.ytmusic-guide-entry-renderer {
+  color: $font-color;
 }
 
 
@@ -551,6 +572,10 @@ ytmusic-player-bar[is-web-delhi-icons-enabled] yt-icon-button.ytmusic-player-bar
   &:active {scale: 0.9;}
 }
 
+ytmusic-player-expanding-menu {
+  background-color: transparent;
+}
+
 
 /* Round the progress bar and add a shadow */
 #primaryProgress.tp-yt-paper-progress {
@@ -598,13 +623,13 @@ ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .right-content.ytmusic-nav-bar {padd
 }
 
 /* ============================ */
-/*             Navbar           */
+/*           Navbar             */
 /* ============================ */
 
 .search-container.ytmusic-search-box { /* Fixes some visual bugs with the search bar */ overflow: visible;}
 
 #layout[player-ui-state="PLAYER_PAGE_OPEN"] #nav-bar-background, #nav-bar-background.ytmusic-app-layout {
-  background: linear-gradient( $title-bar-color 15%, transparent) !important;
+  background: linear-gradient( $title-bar-color 5%, transparent) !important;
   border-bottom: none;
 }
 #nav-bar-background.ytmusic-app-layout, ytmusic-app-layout[is-bauhaus-sidenav-enabled] #nav-bar-background.ytmusic-app-layout { /* Remove duplicated background */ 
@@ -797,6 +822,7 @@ tp-yt-paper-listbox.ytmusic-menu-popup-renderer, .ytmusicMultiPageMenuRendererMe
 ytmusic-menu-navigation-item-renderer, ytmusic-menu-service-item-renderer, ytmusic-toggle-menu-service-item-renderer, ytmusic-menu-service-item-download-renderer, ytd-compact-link-renderer, .category-menu-item.ytmusic-settings-page {
   border-radius: $border-radius !important;
   transition: background-color 0.2s ease-out, color 0.25s ease-out;
+  color: $font-color !important;
 
   &:hover {
     background: $highlight-background-color !important;
@@ -889,6 +915,16 @@ ytmusic-immersive-header-renderer[is-description-expanded] .image.ytmusic-immers
 }
 .ytmusic-av-toggle[playback-mode=ATV_PREFERRED] .song-button.ytmusic-av-toggle {
   background-color: rgba(255,255,255,0.15) !important;
+}
+
+@media (max-width: 616px) {
+  tp-yt-paper-tabs.ytmusic-player-page {
+    background: rgba(255, 255, 255, 0.00) !important;
+    top: -64px;
+  }
+  ytmusic-player-bar[is-mweb-player-bar-modernization-enabled] .middle-controls.ytmusic-player-bar {
+    margin-left: 64px;
+  }
 }
 
 
