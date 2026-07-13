@@ -199,7 +199,6 @@ blyrics-long-word-threshold = 1000;
 
 
 
-
 .blyrics--line > span > span.blyrics-background-lyric { font-size: var(--smaller-lyrics-size); /* Edit the smaller lyrics */}
 
 .blyrics-container[data-sync="none"] > div { /* For non-synced lyrics */ color: white !important;}
@@ -233,6 +232,7 @@ blyrics-long-word-threshold = 1000;
       letter-spacing: -1em;
   }
 }
+
 .blyrics-container[data-no-lyrics="true"] .blyrics--line > span { /* Animation for no lyrics*/
   animation: fadeOutOnly 2s forwards 4s, squeeze-shut 0.01s forwards 6s;
 }
@@ -319,7 +319,6 @@ ytmusic-app-layout:not([is-mweb-modernization-enabled])[player-fullscreened]:not
 
 ytmusic-player-page:before { /* Cool blured background with Blyrics! */
   background-size: cover;
-  transform: translate3d(0, 0, 0); /*Attemp to force gpu usage for blur */
   filter: brightness(var(--album-brightness)) var(--album-art-blur) saturate(125%);
   mask-image: linear-gradient(#000, transparent);
   /*animation: movebackground 20s infinite ease-out; */
@@ -330,6 +329,7 @@ ytmusic-player-page:before { /* Cool blured background with Blyrics! */
   height: 100vh;
   overflow: hidden;
 }
+
 
 /* =========== The Main part, the Album art ==================*/
 
@@ -413,7 +413,7 @@ ytmusic-responsive-list-item-renderer[play-button-state=paused], ytmusic-player-
 ytmusic-player-queue-item {border-bottom: none;} /*Removed border*/
 
 #tab-renderer { /* Fade out effect also remove the scroll bar */
-  padding: 16px 8px;
+  padding: 22px 8px;
   mask-image: linear-gradient(180deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
 
@@ -833,6 +833,13 @@ ytmusic-like-button-renderer[like-status="INDIFFERENT"] > .like > button > div >
 ytmusic-like-button-renderer[like-status="LIKE"] > .like > button > div > span { 
   content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSI0MHB4IiBmaWxsPSIjRkZGRkZGIj48cGF0aCBkPSJtNDc5Ljc2LTExMS41OC01MS4yMS00Ni4wNnEtMTA1LjEzLTk1LjcyLTE3My41Ny0xNjUuMjhUMTQ2LjAxLTQ0Ny41cS00MC41My01NS4wMS01Ni43NC0xMDAuMzItMTYuMi00NS4zLTE2LjItOTIuMTggMC05NC4yOCA2My4yLTE1Ny42MSA2My4yMS02My4zMiAxNTYuODItNjMuMzIgNTUuMSAwIDEwMi45NCAyNC41MyA0Ny44NCAyNC41NCA4My43MyA3MC44MyAzOS44OS00OC4yOSA4Ni42NS03MS44MyA0Ni43Ni0yMy41MyAxMDAuMDItMjMuNTMgOTMuNzcgMCAxNTcuMTQgNjMuMzIgNjMuMzYgNjMuMzMgNjMuMzYgMTU3LjYxIDAgNDYuOC0xNi4xNiA5Mi4wMi0xNi4xNyA0NS4yMy01Ni43NCAxMDAuMi00MC41NyA1NC45OC0xMDkuMTMgMTI0LjY2VDUzMS4xMy0xNTcuNjRsLTUxLjM3IDQ2LjA2WiIvPjwvc3ZnPg==);}
 
+  /* when window is resized to be small */
+
+@media (max-width: 935px) {
+    .image.ytmusic-player-bar, .thumbnail-image-wrapper.ytmusic-player-bar, .thumbs.ytmusic-player-bar, .time-info.ytmusic-player-bar {
+        display: block;
+    }
+}
 /* ================================= */
 /* Buttons and Context Menus */
 /* ================================= */
@@ -984,9 +991,16 @@ ytmusic-two-row-item-renderer[aspect-ratio=MUSIC_TWO_ROW_ITEM_THUMBNAIL_ASPECT_R
 
 #items.ytmusic-carousel { /* add fading for the scrolling items */
     mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent);
-    max-width: calc(var(--ytmusic-content-width) + 32px);
-    padding: 0 32px;
+    width: calc(var(--ytmusic-content-width) + 64px);
+    gap: 0;
+
+    & > * {
+      margin: 4px;
+      padding-left: 32px !important;
+    }
 }
+
+
 
 ytmusic-browse-response[has-background]:not([disable-gradient]) .background-gradient.ytmusic-browse-response {background-image: none; /* Removes repeating images on background*/}
 
@@ -1054,6 +1068,8 @@ ytmusic-play-button-renderer[size=MUSIC_PLAY_BUTTON_SIZE_HUGE] > .content-wrappe
   }
   & > .icon.ytmusic-play-button-renderer {color: white;}
 }
+
+
 
 
 /* ================================ */
