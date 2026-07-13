@@ -10,57 +10,32 @@
 
 </div>
 
-## About the Theme
-Better YTM is a custom css theme that I created to make youtube music look way more morden. 
-I aim to add more animations and more fancy UI effects as well as fix some issues with ytm's UI.
-When you load the theme, the first change you will see is the buttons and when you hover over them. You may also see that the UI has more bluring and is more transparent. These 2 are one of the many changes I added!
+## Core features!
+- A bouncy lyric animation
+- Diffrent Instrumental Breaks icon
+- Easy to change options in the theme file
+- More animations for popup menus
+- Glowing album effects
+- Blured album background
+- Modern playerbar layout
+- All while keeping that YTM feel
 
 > [!IMPORTANT]
-> While this theme should work without it, this theme is made to work with [Better Lyrics](https://chromewebstore.google.com/detail/better-lyrics-lyrics-for/effdbpeggelllpfkjppbokhmmiinhlmg?hl=en)
+> The theme doesn't use css, it uses rics. The theme only works with [Better Lyrics](https://chromewebstore.google.com/detail/better-lyrics-lyrics-for/effdbpeggelllpfkjppbokhmmiinhlmg?hl=en)
 
-The way YouTube Music should have been
+## Version 4.0!
+- Re-code of the theme in .rics
+- Added much more customizable options in the theme file
+- The custom Instrumental Breaks animation should be fixed
+- Added shadows to the lyrics for better readablity 
+- Made the default configuration look more like YTM
+- Added glowing album effect
+- Improved the blured background look
+- Removed most of the transparent blured background
+- Polished many UI elements
+- Removed buggy features
 
-## 3.0 is out - New overall look & feel
-
-## What this themes Adds/Changes
-- Better Scaling
-- Background Blur effects
-- Button redesigns
-- Hover Effects
-- Redone animations!
-- Small UI fixes/changes
-- More UI consistency
-- Padding changes
-- Glow and shadows effects
-- Some Dialog changes
-- More coming soon
-
-## Installation Notes
-This theme works best with the album art background enabled.
-If using a laptop, disable Show stylized animations to save power.
-
-## 3.1.1
-- Update to fix rounding
-- Make rounding borders back to 8px
-- Made the background more blured
-
-## 3.1.0
-- Navbar and player bar uses a gradient background now
-- Instrumental Breaks is now like Archivetune's one
-- Added a blur background for the search bar
-- Removed the scrollbar for some places
-- Small tweaks
-
-## 3.0.1 hotfix
-- Higher blur amount for background
-- made the Unsion Panel slightly higher
-
-## 3.0.0 changelog
-- Re-designed how I wanted the UI to be done, Remove lots of blured elements and added gradients to background
-- Increased Blur radius
-- Fixed some z-index problems
-- Fix the like icon
-- Bug fixed
+If you find any bugs please report it on the blyric discord server by pinging '@wolfthee' or open an issue
 
 <div display="flex">
   <img src="images/2.png">
